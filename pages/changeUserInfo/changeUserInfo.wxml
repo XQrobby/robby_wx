@@ -1,0 +1,17 @@
+<!--pages/changeUserInfo/changeUserInfo.wxml-->
+<input id='name' placeholder='{{name}}' bindinput='inputName'></input>
+<input id='tel' placeholder='{{tel}}' bindinput='inputTel'></input>
+<input id='clas' placeholder='{{clas}}' bindinput='inputClas'></input>
+<input id='section' placeholder='{{section}}' bindinput='inputSection'></input>
+<view id='addrs'>
+  <block wx:for='{{addrs}}' data-index='{{ index }}'>
+    <view class='section' data-index='{{ index }}'>
+      <input class='addr' placeholder='{{item}}' data-index='{{ index }}' bindinput='inputAddr'></input>
+      <view bindtap='minus' data-index='{{ index }}'>-</view>
+    </view>
+  </block>
+  <view id='add' bindtap='add'>
+    <view>+</view>
+  </view>
+  <button id='submit' bindtap='formSubmit'>submit</button>
+</view>

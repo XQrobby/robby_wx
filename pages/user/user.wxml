@@ -1,0 +1,10 @@
+<!--pages/user/user.wxml-->
+<image id='avatar' src='{{ userInfo.avatarUrl }}' bindtap='toChangeUserInfo'></image>
+<view id='nickName'>{{ userInfo.nickName }}</view>
+<view id='tel'>tel:{{ userInfoP.tel }}</view>
+<view id='section_clas'>{{userInfoP.section+"-"+userInfoP.clas}}</view>
+<view id='addrs'>
+  <block wx:for='{{ userInfo.addrs }}'>
+    <view class='addr'>{{ item }}</view>
+  </block>
+</view>

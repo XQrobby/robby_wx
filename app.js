@@ -1,6 +1,6 @@
 //app.js
-var config_js = require('./utils/config.js'),
-  funcSeal = require('./utils/funcSeal.js')
+var config_js = require('./pages/config.js'),
+  funcSeal = require('./pages/funcSeal.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -13,23 +13,25 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         //console.log(res.code)
+        const app = getApp();
+        app.globalData.code = res.code;
         wx.request({
           url: config_js.basehost+config_js.urlpatterns.login,
           method: 'POST',
           header: { "Content-type": config_js.requestHeader },
           data:{code:res.code},
           success:function(res){
-            console.log(res.data)
+            app.globalData.userInfoP = res.data.userInfoP;
             //检验返回信息，确认无误后将个人信息加入全局变量userInfoP
-            if(res.data.status){
-              const app = getApp()
-              app.globalData.userInfoP = res.data.userInfoP
-            }else{
-              funcSeal.warn('用户未注册')
+            if(res.data.status=='none'){
+              funcSeal.toast('请输入注册信息');
+              wx.navigateTo({
+                url: '/pages/changeUserInfo/changeUserInfo',
+              })
             }
           },
           fail:function(){
-            funcSeal.warn('服务器连接失败')
+            funcSeal.toast('服务器连接失败')
           }
         })
       }

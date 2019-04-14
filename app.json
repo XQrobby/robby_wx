@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/newOrder/newOrder",
-    "pages/orderList/orderList"
+    "pages/orderList/orderList",
+    "pages/user/user",
+    "pages/changeUserInfo/changeUserInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,6 +26,12 @@
         "iconPath": "images/list.png",
         "selectedIconPath": "images/listsel.png",
         "text": "订单"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/usersel.png",
+        "text": "我的"
       }
     ]
   }

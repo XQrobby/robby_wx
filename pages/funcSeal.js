@@ -1,5 +1,5 @@
 var funcSeal = {
-  warn:function(warning){
+  toast:function(warning){
     wx.showToast({
       title: warning,
       icon: 'none',
