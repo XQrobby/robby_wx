@@ -4,7 +4,8 @@
     "pages/newOrder/newOrder",
     "pages/orderList/orderList",
     "pages/user/user",
-    "pages/changeUserInfo/changeUserInfo"
+    "pages/changeUserInfo/changeUserInfo",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

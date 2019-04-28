@@ -1,2 +1,72 @@
 <!--pages/newOrder/newOrder.wxml-->
-<text>pages/newOrder/newOrder.wxml</text>
+<picker bindchange='choiceOrderType' value='{{orderTypeIdx}}' range='{{orderTypes}}'>
+  <view id='orderType'>
+    <view>订单类型</view>
+    <view>{{orderType}}</view>
+  </view>
+</picker>
+<view wx:if='{{orderType=="个人订单"}}'>
+  <picker bindchange='choiceServiceType' value='{{serviceTypeIdx}}' range='{{serviceTypes}}'>
+    <view id='serviceType'>
+      <view>服务类型</view>
+      <view>{{serviceType}}</view>
+    </view>
+  </picker>
+</view>
+<view wx:elif='{{orderType=="学校订单"}}'>
+  <picker bindchange='choiceSection' value='{{sectionIdx}}' range='{{sections}}'>
+    <view>学校/单位</view>
+    <view>{{section}}</view>
+  </picker>
+  <view wx:if='{{section}}'>
+    <view>
+      <picker bindchange='choiceClas' value='{{clasIdx}}' range='{{clases}}'>
+        <view>院系/部门</view>
+        <view>{{clas}}</view>
+      </picker>
+    </view>
+  </view>
+  <view wx:if='{{clas}}'>
+    <picker bindchange='choiceServiceType' value='{{serviceTypeIdx}}' range='{{serviceTypes}}'>
+    <view id='serviceType'>
+      <view>服务类型</view>
+      <view>{{serviceType}}</view>
+    </view>
+    </picker>
+  </view>
+</view>
+
+<view wx:if='{{orderType=="个人订单"&&serviceType||orderType=="学校订单"&&section&&clas&&serviceType}}'>
+  <view>
+    <view>机器型号</view>
+    <input id='model' placeholder='输入机器型号' bindinput='inputModel'>{{ model }}</input>
+  </view>
+  <view id='faultDescription'>
+    <view>故障描述</view>
+    <input placeholder='简单描述故障' bindinput='inputFaultDescription'>{{ faultDescription }}</input>
+  </view>
+  <view class='section' bindtap='choosePic'>
+    <view style='width:50%;color:#f44336'>点击选择故障图片</view>
+    <view>已选中{{picCount}}张图片</view>
+  </view>
+  <view class='space'>用户信息</view>
+  <view id='userInfo'>
+  <view class='section'>
+    <view class='section_title'>联系人</view>
+    <view>{{name}}</view>
+  </view>
+  <view class='line'></view>
+  <view class='section'>
+    <view class='section_title'>联系电话</view>
+    <view>{{tel}}</view>
+  </view>
+  <view class='line'></view>
+  <picker bindchange="bindCasPickerChange" value='{{addrIdx}}' range='{{addrs}}'>
+    <view class='section'>
+      <view class='section_title'>报修地址</view>
+      <view>{{addr}}</view>
+    </view>
+  </picker>
+  </view>
+  <button id='submit' bindtap='submit'>提交订单</button>
+</view>

@@ -1,2 +1,14 @@
 <!--pages/orderList/orderList.wxml-->
-<text>pages/orderList/orderList.wxml</text>
+<view id='filter'>
+  <block wx:for='{{ filterItems }}'>
+    <view>{{ item }}</view>
+  </block>
+</view>
+<block wx:for='{{ orders }}' data-index='{{ index }}' >
+  <view bindtap='toOrder' data-index='{{ index }}'>
+    <view>{{item.orderID}}</view>
+    <view>{{item.serviceType}}</view>
+    <view>{{item.faultDescription}}</view>
+    <view>{{item.orderStatus}}</view>
+  </view>
+</block>

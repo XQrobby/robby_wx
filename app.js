@@ -21,7 +21,10 @@ App({
           header: { "Content-type": config_js.requestHeader },
           data:{code:res.code},
           success:function(res){
+            app.globalData.sections = res.data.sectionsForm;
+            app.globalData.serviceTypes = res.data.serviceTypesForm;
             app.globalData.userInfoP = res.data.userInfoP;
+
             //检验返回信息，确认无误后将个人信息加入全局变量userInfoP
             if(res.data.status=='none'){
               funcSeal.toast('请输入注册信息');
@@ -58,6 +61,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    haveNewOrder: false,
   }
 })

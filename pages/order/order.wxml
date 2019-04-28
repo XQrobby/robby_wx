@@ -1,0 +1,8 @@
+<!--pages/order/order.wxml-->
+<text>pages/order/order.wxml</text>
+<view wx:if='{{order.orderStatus=="审核中"}}'>
+  <button id='cancel' bindtap='cancel'>{{"撤销"}}</button>
+</view>
+<view wx:elif='{{order.orderStatus=="已完修"}}'>
+  <button id='remark' bindtap='remark'>{{"评论"}}</button>
+</view>
