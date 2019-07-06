@@ -13,16 +13,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     const app = getApp()
-    console.log(Object.keys(app.globalData.sections))
+    console.log(app.globalData)
     this.setData({
       orderTypes:config_js.orderTypes,
       serviceTypes: app.globalData.serviceTypes,
-      sections_clases:app.globalData.sections,
-      sections:Object.keys(app.globalData.sections),
-      name: app.globalData.userInfoP.name,
-      tel: app.globalData.userInfoP.tel,
-      addrs: app.globalData.userInfoP.addrs,
+      sections_clases: app.globalData.sections,
+      sections: Object.keys(app.globalData.sections),
+      name: app.globalData.clientInfoP.name,
+      tel: app.globalData.clientInfoP.tel,
+      addrs: app.globalData.clientInfoP.addrs,
     })
     console.log(this.data)
   },
@@ -109,7 +110,7 @@ Page({
     const app = getApp();
     var that = this, 
       data = {
-        unionCode: app.globalData.userInfoP.unionCode,
+        unionCode: app.globalData.clientInfoP.unionCode,
         code: app.globalData.code,
         orderType: that.data.orderType,
         serviceType: that.data.serviceType,
@@ -156,7 +157,7 @@ Page({
       name: 'file',//这里根据自己的实际情况改
       formData: { 
         'orderID': that.data.orderID,
-        'unionCode': app.globalData.userInfoP.unionCode,
+        'unionCode': app.globalData.clientInfoP.unionCode,
         'code':app.globalData.code
        },//这里是上传图片时一起上传的数据
       success: (resp) => {

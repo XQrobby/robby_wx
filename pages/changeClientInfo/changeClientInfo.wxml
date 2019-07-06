@@ -1,8 +1,14 @@
-<!--pages/changeUserInfo/changeUserInfo.wxml-->
+<!--pages/changeclientInfo/changeclientInfo.wxml-->
+<view>姓名</view>
 <input id='name' placeholder='{{name}}' bindinput='inputName'></input>
+<view>电话</view>
 <input id='tel' placeholder='{{tel}}' bindinput='inputTel'></input>
+<!--考虑取消单位和部门-->
+<view>单位</view>
 <input id='clas' placeholder='{{clas}}' bindinput='inputClas'></input>
+<view>部门</view>
 <input id='section' placeholder='{{section}}' bindinput='inputSection'></input>
+<view>地址</view>
 <view id='addrs'>
   <block wx:for='{{addrs}}' data-index='{{ index }}'>
     <view class='section' data-index='{{ index }}'>

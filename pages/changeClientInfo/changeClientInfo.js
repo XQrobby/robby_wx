@@ -1,4 +1,4 @@
-// pages/changeUserInfo/changeUserInfo.js
+// pages/changeclientInfo/changeclientInfo.js
 var config_js = require('../config.js');
 Page({
 
@@ -15,14 +15,14 @@ Page({
   onLoad: function (options) {
     const app = getApp();
     var addrs = [''];
-    if (app.globalData.userInfoP.addrs.length>0){
-      addrs = app.globalData.userInfoP.addrs
+    if (app.globalData.clientInfoP.addrs.length>0){
+      addrs = app.globalData.clientInfoP.addrs
     }
     this.setData({
-      name: app.globalData.userInfoP.name,
-      tel: app.globalData.userInfoP.tel,
-      clas:app.globalData.userInfoP.clas,
-      section:app.globalData.userInfoP.section,
+      name: app.globalData.clientInfoP.name,
+      tel: app.globalData.clientInfoP.tel,
+      clas:app.globalData.clientInfoP.clas,
+      section:app.globalData.clientInfoP.section,
       addrs: addrs
     })
     console.log(this.data)
@@ -136,21 +136,21 @@ Page({
     const app = getApp();
     var that = this,
       value = e.detail.value,
-      unionCode = app.globalData.userInfoP.unionCode,
+      unionCode = app.globalData.clientInfoP.unionCode,
       name = that.data.name,
       tel = that.data.tel,
       addrs = that.data.addrs,
       clas = that.data.clas,
       section = that.data.section;
-    app.globalData.userInfoP.name = name;
-    app.globalData.userInfoP.tel = tel;
-    app.globalData.userInfoP.addrs = addrs;
-    app.globalData.userInfoP.clas = clas;
-    app.globalData.userInfoP.section = section;
+    app.globalData.clientInfoP.name = name;
+    app.globalData.clientInfoP.tel = tel;
+    app.globalData.clientInfoP.addrs = addrs;
+    app.globalData.clientInfoP.clas = clas;
+    app.globalData.clientInfoP.section = section;
 
     if (this.checkInfo()) {
       wx.request({
-        url: config_js.basehost + config_js.urlpatterns.changeUserInfo, //后台服务器
+        url: config_js.basehost + config_js.urlpatterns.changeClientInfo, //后台服务器
         data: {
           unionCode: unionCode,
           code: app.globalData.code,

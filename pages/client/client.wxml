@@ -1,0 +1,10 @@
+<!--pages/client/client.wxml-->
+<image id='avatar' src='{{ clientInfo.avatarUrl }}' bindtap='toChangeClientInfo'></image>
+<view id='nickName'>{{ clientInfo.nickName }}</view>
+<view id='tel'>tel:{{ clientInfoP.tel }}</view>
+<view id='section_clas'>{{clientInfoP.section+"-"+clientInfoP.clas}}</view>
+<view id='addrs'>
+  <block wx:for='{{ clientInfo.addrs }}'>
+    <view class='addr'>{{ item }}</view>
+  </block>
+</view>

@@ -3,7 +3,7 @@ var config = {
   requestHeader: "application/x-www-form-urlencoded",
   urlpatterns:{
     login:'snack/login/',
-    changeUserInfo:'snack/changeUserInfo/',
+    changeClientInfo:'snack/changeClientInfo/',
     orderList:'snack/orderList/',
     newOrder:'snack/newOrder/',
     order:'snack/order/',

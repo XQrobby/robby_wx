@@ -20,7 +20,7 @@ Page({
       method: 'POST',
       header: { "Content-type": config_js.requestHeader },
       data: {
-        unionCode: app.globalData.userInfoP.unionCode,
+        unionCode: app.globalData.clientInfoP.unionCode,
         code: app.globalData.code,
         showCount: this.data.showCount
       },
@@ -48,7 +48,7 @@ Page({
         method: 'POST',
         header: { "Content-type": config_js.requestHeader },
         data: {
-          unionCode: app.globalData.userInfoP.unionCode,
+          unionCode: app.globalData.clientInfoP.unionCode,
           code: app.globalData.code,
           showCount: this.data.showCount
         },

@@ -22,7 +22,7 @@ Page({
       header: { "Content-type": config_js.requestHeader },
       data: {
         orderID:orderID, 
-        unionCode: app.globalData.userInfoP.unionCode,
+        unionCode: app.globalData.clientInfoP.unionCode,
         code: app.globalData.code,
       },
       success:function(res){
@@ -31,6 +31,7 @@ Page({
             order:res.data.order,
           })
         }
+        console.log(that.data)
       }
     })
   },
@@ -48,7 +49,7 @@ Page({
             header: { "Content-type": config_js.requestHeader },
             data: {
               orderID: that.data.order.orderID,
-              unionCode: app.globalData.userInfoP.unionCode,
+              unionCode: app.globalData.clientInfoP.unionCode,
               code: app.globalData.code,
             },
             success: function (res) {

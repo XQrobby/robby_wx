@@ -3,8 +3,8 @@
     "pages/index/index",
     "pages/newOrder/newOrder",
     "pages/orderList/orderList",
-    "pages/user/user",
-    "pages/changeUserInfo/changeUserInfo",
+    "pages/client/client",
+    "pages/changeClientInfo/changeClientInfo",
     "pages/order/order"
   ],
   "window": {
@@ -29,11 +29,12 @@
         "text": "订单"
       },
       {
-        "pagePath": "pages/user/user",
-        "iconPath": "images/user.png",
+        "pagePath": "pages/client/client",
+        "iconPath": "images/client.png",
         "selectedIconPath": "images/usersel.png",
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

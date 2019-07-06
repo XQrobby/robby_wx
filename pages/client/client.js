@@ -10,16 +10,16 @@ Page({
   onLoad: function (options){
     const app = getApp();
     this.setData({
-      userInfo: app.globalData.userInfo,
-      userInfoP: app.globalData.userInfoP
+      clientInfo: app.globalData.clientInfo,
+      clientInfoP: app.globalData.clientInfoP
     })
   },
   onShow:function(){
     this.onLoad()
   },
-  toChangeUserInfo:function(){
+  toChangeClientInfo:function(){
     wx.navigateTo({
-      url: '../changeUserInfo/changeUserInfo',
+      url: '../changeClientInfo/changeClientInfo',
     })
   }
 })
