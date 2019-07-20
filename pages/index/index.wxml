@@ -1,3 +1,2 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
 <button bindtap='toNewOrder'>提交维修信息</button>
