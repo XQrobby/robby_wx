@@ -1,39 +1,61 @@
-// pages/order/order.js
 var config_js = require('../config.js');
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bindDisabled: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const app = getApp();
-    var orderID = String(options.orderID),
-      that = this;
+  order: function (orderID) {
+    var that = this;
     wx.request({
       url: config_js.basehost + config_js.urlpatterns.order,
       method: 'POST',
       header: { "Content-type": config_js.requestHeader },
       data: {
-        orderID:orderID, 
+        orderID: orderID,
         unionCode: app.globalData.clientInfoP.unionCode,
         code: app.globalData.code,
       },
-      success:function(res){
-        if(res.data.status){
+      success: function (res) {
+        if (res.data.status) {
+          var order = res.data.order,
+            repairButton = that.data.repairButton
+          console.log('order:data', order)
           that.setData({
-            order:res.data.order,
+            order: res.data.order,
+            bindDisabled: true,
           })
         }
-        console.log(that.data)
-      }
+        if (that.orderCallback) {
+          console.log('函数回调')
+          that.orderCallback(order)
+        }
+      },
     })
+  },
+  onLoad: function (options) {
+    var that = this
+    console.log('order:onLoad')
+    var orderID = String(options.orderID)
+    this.order(orderID)
+    if (!this.data.order) {
+      this.orderCallback = order => {
+        this.setData({
+          order: order,
+          bindDisabled: true
+        })
+      }
+    }
+  },
+  onShow: function () {
+    console.log('order:onShow')
   },
   cancel:function(e){
     const app = getApp();
@@ -65,6 +87,12 @@ Page({
       })
     }
   },
+  toOrderCheck:function(){
+    wx.navigateTo({
+      url: '/pages/orderCheck/orderCheck/',
+    })
+  }
+  ,
   remark:function(){
 
   }

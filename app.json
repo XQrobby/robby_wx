@@ -5,7 +5,8 @@
     "pages/orderList/orderList",
     "pages/client/client",
     "pages/changeClientInfo/changeClientInfo",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/orderCheck/orderCheck"
   ],
   "window": {
     "backgroundTextStyle": "light",
