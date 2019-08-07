@@ -88,12 +88,9 @@ Page({
     }
   },
   toOrderCheck:function(){
+    var orderID = this.data.order.orderID
     wx.navigateTo({
-      url: '/pages/orderCheck/orderCheck/',
+      url: '../orderCheck/orderCheck?orderID='+orderID,
     })
-  }
-  ,
-  remark:function(){
-
   }
 })

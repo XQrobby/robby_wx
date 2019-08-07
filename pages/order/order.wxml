@@ -79,9 +79,9 @@
   </view>
 
 </view>
-<view wx:if='{{order.order=="已完修"}}'>
-  <button id='orderCheck' bindtap='orderCheck'></button>
-</view>
 <view wx:if='{{order.orderStatus=="审核中"}}'>
   <button id='cancel' bindtap='cancel'>{{"撤销"}}</button>
+</view>
+<view wx:if='{{order.orderStatus=="已完修"}}'>
+  <button id='orderCheck' bindtap='toOrderCheck'>订单验收</button>
 </view>

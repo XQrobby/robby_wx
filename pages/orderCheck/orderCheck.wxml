@@ -1,2 +1,13 @@
 <!--pages/orderCheck/orderCheck.wxml-->
-<text>pages/orderCheck/orderCheck.wxml</text>
+<view>
+<view>对本次服务评价</view>
+  <picker bindchange='choiceSection' value='{{levelIdx}}' range='{{levels}}'>
+    <view>服务等级</view>
+    <view>{{level}}</view>
+  </picker>
+  <view>
+    <view>评价</view>
+    <input bindinput='inputEvaluation'></input>
+  </view>
+  <button bindtap='submit'>提交</button>
+</view>
