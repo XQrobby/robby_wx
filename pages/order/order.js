@@ -7,6 +7,11 @@ Page({
    */
   data: {
     bindDisabled: false,
+    repairButton:'',
+    order: [
+      { 'orderID': '1', 'serviceType': "2", 'faultDescription': "3", 'orderStatus': "已完修" },
+    ],
+    orderStatus:"已完修",
   },
 
   /**
