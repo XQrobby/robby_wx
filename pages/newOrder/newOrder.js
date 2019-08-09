@@ -6,7 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    picCount:0
+    picCount:0,
+    /*orderType:"学校订单",
+    serviceType:1,
+    section:1,
+    clas:1,*/
+    
   },
 
   /**
