@@ -1,23 +1,49 @@
 <!--pages/changeclientInfo/changeclientInfo.wxml-->
-<view>姓名</view>
-<input id='name' placeholder='{{name}}' bindinput='inputName'></input>
-<view>电话</view>
-<input id='tel' placeholder='{{tel}}' bindinput='inputTel'></input>
-<!--考虑取消单位和部门-->
-<view>单位</view>
-<input id='clas' placeholder='{{clas}}' bindinput='inputClas'></input>
-<view>部门</view>
-<input id='section' placeholder='{{section}}' bindinput='inputSection'></input>
-<view>地址</view>
-<view id='addrs'>
-  <block wx:for='{{addrs}}' data-index='{{ index }}'>
-    <view class='section' data-index='{{ index }}'>
-      <input class='addr' placeholder='{{item}}' data-index='{{ index }}' bindinput='inputAddr'></input>
-      <view bindtap='minus' data-index='{{ index }}'>-</view>
+<view class='container'>
+  <form bindsubmit='formSubmit'>
+    <view class='title'>个人资料</view>
+    <view class='space'>联系人</view>
+
+    <view id='userinfo'>
+
+      <view class='section'>
+        <view class='section_title'>姓名</view>
+        <input id='name' placeholder='{{name}}' bindinput='inputName'></input>
+      </view>
+
+    <view class='line'></view>
+      <view class='section'>
+        <view class='section_title'>联系电话</view>
+        <input id='tel' placeholder='{{tel}}' bindinput='inputTel'></input>
+      </view>
+    
+    <view class='line'></view>
+      <view class='section'>
+        <view class='section_title'>单位</view>
+        <input id='clas' placeholder='{{clas}}' bindinput='inputClas'></input>
+      </view>
+
+    <view class='line'></view>
+      <view class='section'>
+        <view class='section_title'>部门</view>
+        <input id='section' placeholder='{{section}}' bindinput='inputSection'></input>
+      </view>
+    
+    <view class='line'></view>
+    <view class='section'>
+      <view class='section_title'>地址</view>
+      <block wx:for='{{addrs}}' data-index='{{ index }}'>
+        <view class='section_title' data-index='{{ index }}'>
+          <input class='addr' placeholder='{{item}}' data-index='{{ index }}' bindinput='inputAddr'></input>
+          <view bindtap='minus' data-index='{{ index }}'>-</view>
+        </view>
+      </block>
+      <view id='add' bindtap='add'> <view>+</view> </view>
+
     </view>
-  </block>
-  <view id='add' bindtap='add'>
-    <view>+</view>
   </view>
-  <button id='submit' bindtap='formSubmit'>submit</button>
+
+    <button id='submit' bindtap='formSubmit'>提交修改</button>
+  </form>
 </view>
+
