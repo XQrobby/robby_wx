@@ -1,10 +1,31 @@
-<!--pages/client/client.wxml-->
-<image id='avatar' src='{{ clientInfo.avatarUrl }}' bindtap='toChangeClientInfo'></image>
-<view id='nickName'>{{ clientInfo.nickName }}</view>
-<view id='tel'>tel:{{ clientInfoP.tel }}</view>
-<view id='section_clas'>{{clientInfoP.section+"-"+clientInfoP.clas}}</view>
-<view id='addrs'>
-  <block wx:for='{{ clientInfo.addrs }}'>
-    <view class='addr'>{{ item }}</view>
-  </block>
+<!--pages/user/user.wxml-->
+<view class="container">
+  <view class="userinfo" bindtap='toChangeClientInfo'>
+    <image class="userinfo-avatar" src="{{ clientInfo.avatarUrl }}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{ clientInfo.nickName }}</text>
+  </view>
+  <view class="separate"></view>
+  <view class="person-list">
+    <view class="person-line"></view>
+    <view class="list-item">
+      <text class="item-text">📞联系方式:</text>
+      <text class="item-text">{{ clientInfoP.tel }}</text>
+    </view>
+    <view class="person-line"></view>
+    <view class='list-item'>
+      <text class="item-text">👨‍🎓院系部门:</text>
+      <text class="item-text">{{clientInfoP.section+"-"+clientInfoP.clas}}</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <text class="item-text">🏫报修地址:</text>
+      <text class="item-text">
+        <block wx:for='{{ clientInfo.addrs }}'>
+          <view class='addr'>{{ item }}</view>
+          <view class="person-line"></view>
+        </block>
+      </text>
+    </view>
+    <view class="person-line"></view>
+  </view>
 </view>
