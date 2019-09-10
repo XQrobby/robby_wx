@@ -1,1 +1,74 @@
 /* pages/newOrder/newOrder.wxss */
+.section{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative; 
+  font-size: 40rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.container{
+  display: block;
+  box-sizing: border-box;
+  height: 1180rpx;
+  position: relative;
+}
+.section{
+  background: #fff;
+}
+.section_title{
+  width: 30%;
+  padding-left: 10rpx;
+  font-weight: 500;
+}
+.spaceB{
+  width: 100%;
+  font-size: 35rpx;
+  color: #b6b5bb;
+  padding:80rpx;
+  line-height: 30rpx;
+}
+.space{
+  width: 100%;
+  font-size: 35rpx;
+  color: #b6b5bb;
+  padding:30rpx;
+  line-height: 30rpx;
+}
+.line{
+  height: 3rpx;
+  width: 100%;
+  background-color:#f0eff5;
+}
+.title{
+  text-align: center;
+  padding:30rpx 0 30rpx 0;
+  color: #c9c9c9;
+  background-color: #212121;
+}
+#submit{
+  width: 80%;
+  background: #9ad59b;
+  color: #f0eff5;
+  position: relative;
+  margin-left: 10%;
+  margin-top: 8%;
+  margin-bottom: 8%;
+}
+#add{
+  position: absolute;
+  right: 5%;
+  padding: 20rpx;
+}
+.minus{
+  position: absolute;
+  right: 7%;
+}
+.address{
+  width: 80%;
+}
+.bt{
+  width:70rpx;
+  height:70rpx;
+}

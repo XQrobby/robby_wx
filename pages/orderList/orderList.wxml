@@ -1,14 +1,41 @@
 <!--pages/orderList/orderList.wxml-->
 <view id='filter'>
-  <block wx:for='{{ filterItems }}'>
-    <view>{{ item }}</view>
+  <block wx:for='{{ filterItems }}' data-index='{{ index }}'>
+    <view style='{{ item.style }}' bindtap='filter' class='f-item' data-index='{{index}}'>{{item.status}}</view>
   </block>
 </view>
-<block wx:for='{{ orders }}' data-index='{{ index }}' >
-  <view bindtap='toOrder' data-index='{{ index }}'>
-    <view>{{item.orderID}}</view>
-    <view>{{item.serviceType}}</view>
-    <view>{{item.faultDescription}}</view>
-    <view>{{item.orderStatus}}</view>
-  </view>
-</block>
+<view id='back'></view>
+<view class='container'>
+  <scroll-view class="scroll" scroll-y="true" bindscrolltolower='orders_add'>
+    <view class="separate"></view>
+    <block wx:for="{{orders}}" data-index='{{index}}'>
+      <view class="order_container" data-index='{{index}}'>
+        <view class='title'>
+          <view class='No'>
+            <view class='lb-o'>
+              <view class='lb-0'></view>
+              <view class='lb-1'></view>
+            </view>
+            <view class='text-0'>{{ item.no }}</view>
+          </view>
+          <view class='status'>
+            <view class='text-1'>{{ item.status }}</view>
+          </view>
+        </view>
+        <view class='content' data-index='{{index}}' bindtap='toOrder'>
+          <view class='content-0'>
+            <view class='space'></view>
+            <image class='pic' src='{{item.image}}' mode='center'></image>
+          </view>
+          <view class='content-1'>
+            <view class='text-2'>订单编号：{{item.orderID}}</view>
+            <view class='text-4'>服务类型：{{item.serviceType}}</view>
+            <view class='text-3'>故障描述：{{item.faultDescription}}</view>
+            <view class='text-5'>状态：{{item.orderStatus}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="separate"></view>
+    </block>
+  </scroll-view>
+</view>

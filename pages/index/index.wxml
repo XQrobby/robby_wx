@@ -1,2 +1,7 @@
 <!--pages/index/index.wxml-->
-<button bindtap='toNewOrder'>提交维修信息</button>
+<view class="container" >
+  <button id='submit' bindtap='toNewOrder'>
+    <image class='icon' src='../../images/submit.png'></image>
+    <view>报修申请</view>
+  </button>
+</view>

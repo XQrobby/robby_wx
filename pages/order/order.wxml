@@ -1,15 +1,34 @@
 <!--pages/order/order.wxml-->
-
+<view class='title'>订单详情</view>
 <view class='container'>
-  <view id='title-3'>订单详情</view>
+  <view class="separate"></view>
   <view id='user'>
-    <view class='content'>
-      <view class='name'>{{order.client}}</view>
-      <view class='address'>{{order.addr}}</view>
-      <view>{{order.orderID}}</view>
-      <view>{{order.orderStatus}}</view>
-      <view>{{order.serviceStatus}}</view>
-      <view class='view-2'>{{order.orderType}}</view>
+    <view class='title-1'>
+      <text class='text-0'>订单简介</text>
+    </view>
+    <view class='name'>
+      <text class='text-1'>客户姓名:</text>
+      <text class='text-2'>{{order.client}}</text>
+    </view>
+    <view class='address'>
+      <text class='text-1'>客户地址:</text>
+      <text class='text-2'>{{order.addr}}</text>
+    </view>
+    <view class='id'>
+      <text class='text-1'>订单单号:</text>
+      <text class='text-2'>{{order.orderID}}</text>
+    </view>
+    <view class='statu'>
+      <text class='text-1'>订单状态:</text>
+      <text class='text-2'>{{order.orderStatus}}</text>
+      </view>
+    <view class='service'>
+      <text class='text-1'>服务状态:</text>
+      <text class='text-2'>{{order.serviceStatus}}</text>
+    </view>
+    <view class='type'>
+      <text class='text-1'>订单类型:</text>
+      <text class='text-2'>{{order.orderType}}</text>
     </view>
   </view>
   <view class="separate"></view>
@@ -17,6 +36,16 @@
     <view class='title-1'>
       <text class='text-0'>故障信息</text>
     </view>
+    <swiper id='roll' indicator-active-color='#FF0036' indicator-dots='true' autoplay='true' circular='true' interval='2000' display-multiple-items='1'>
+        <!--横屏滚动-->
+        <block wx:for='{{ order.images }}'>
+          <swiper-item>
+            <view class='roll-item'>
+              <image class='rollImg' src='{{ item}}' mode='aspectFit'></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
     <view id='typ'>
       <text class='text-1'>机器型号：</text>
       <text class='text-2'>{{order.model}}</text>
@@ -82,6 +111,6 @@
 <view wx:if='{{order.orderStatus=="审核中"}}'>
   <button id='cancel' bindtap='cancel'>{{"撤销"}}</button>
 </view>
-<view wx:if='{{order.orderStatus=="已完修"}}'>
-  <button id='orderCheck' bindtap='toOrderCheck'>订单验收</button>
+<view wx:if='{{orderStatus=="已完修"}}'>
+  <button id='submit' bindtap='toOrderCheck'>订单验收</button>
 </view>

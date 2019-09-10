@@ -1,1 +1,32 @@
 /* pages/index/index.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  color: #d4d4d4;
+  box-sizing: border-box;
+  background:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565172490320&di=3cddfa874b45f07a9bd1c2e618d736f4&imgtype=0&src=http%3A%2F%2Fimg02.tooopen.com%2Fimages%2F20150625%2Ftooopen_sy_131851333579.jpg) center top no-repeat;
+  /*background:url(http://robbyZhang.cn/media/static/back.png) no-repeat;*/
+  background-size: cover;
+  position: relative;
+}
+#submit{
+  width: 80%;
+  background-color: #fff;
+  color: #3e7dff;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  position: absolute;
+  bottom: 8%;
+}
+.icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.choosePic{
+  display: flex;
+  flex-direction: row;
+}
