@@ -7,23 +7,15 @@ Page({
    */
   data: {
     showCount: 0,
+    filterItemsMode:0,
     //导航栏
     filterItems: [
-      { 'status': '全部', 'style': "color:#2791fe;box-shadow: 0 1px 0 #2791fe;" },
-      { 'status': '处理中', 'style': 'color: #d4d4d4;' },
-      { 'status': '维修中', 'style': 'color: #d4d4d4;' },
+      { 'status': '全部', 'style': "color:#FFF;box-shadow: 0 1px 0 #FFF;" },
+      { 'status': '审核中', 'style': 'color: #d4d4d4;' },
+      { 'status': '待维修', 'style': 'color: #d4d4d4;' },
       { 'status': '已完修', 'style': 'color: #d4d4d4;' },
       { 'status': '已验收', 'style': 'color: #d4d4d4;' },
-    ],
-    //订单
-    orders_: [
-      { 'orderID': '1', 'serviceType': "2", 'faultDescription': "3", 'orderStatus': "处理中" },
-      { 'orderID': '1', 'serviceType': "2", 'faultDescription': "3", 'orderStatus': "已验收" },
-    ],
-    orders: [
-      { 'orderID': '1', 'serviceType': "2", 'faultDescription': "3", 'orderStatus': "处理中" },
-      { 'orderID': '1', 'serviceType': "2", 'faultDescription': "3", 'orderStatus': "已验收" },
-    ],
+    ]
   },
 
   /**
@@ -42,7 +34,8 @@ Page({
         showCount: this.data.showCount
       },
       success: function (res) {
-        console.log(res.data)
+        var count = that.data.showCount + res.data.orders.length
+        console.log(res.data, 'length:', res.data.orders.length,'showcount',that.data.showCount,'count',count)
         that.setData({
           orders_: res.data.orders,
           orders: res.data.orders,
@@ -50,39 +43,6 @@ Page({
         })
       }
     })
-  },
-  onShow: function(){
-    this.setData({
-      showCount: 0
-    })
-    this.onLoad()
-    /*
-    var that = this;
-    const app = getApp();
-    if(app.globalData.haveNewOrder){
-      wx.request({
-        url: config_js.basehost + config_js.urlpatterns.orderList,
-        method: 'POST',
-        header: { "Content-type": config_js.requestHeader },
-        data: {
-          unionCode: app.globalData.clientInfoP.unionCode,
-          code: app.globalData.code,
-          showCount: this.data.showCount
-        },
-        success: function (res) {
-          if (res.data.orders.length) {
-            var orders_ = that.data.orders_.concat(res.data.orders);
-            that.setData({
-              orders_: orders_,
-              orders: orders_,
-              showCount: that.data.showCount + res.data.orders.length
-            })
-            app.globalData.haveNewOrder = false;
-          }
-        }
-      })
-    }
-    */
   },
   selected: function (index) {
     var that = this;
@@ -110,7 +70,7 @@ Page({
       if (index == 0) {
         return order
       }
-      else return order.status == filterItems[index].status
+      else return order.orderStatus == filterItems[index].status
     });
     this.selected(index)
     that.setData({
@@ -125,24 +85,49 @@ Page({
       url: '../order/order?orderID='+orderID
     })
   },
-
   orders_add: function (e) {
     const app = getApp()
     var that = this;
-    var index = that.data.index + 1,
-      count = that.data.count;
+    var orders_ = this.data.orders_,
+     orders = this.data.orders
+    var filterItemsMode = that.data.filterItemsMode,
+      showCount = that.data.showCount
     wx.request({
-      url: app.globalData.host + 'PCfix/orders/',
+      url: config_js.basehost + config_js.urlpatterns.orderList,
       data: {
-        openid: app.globalData.openid,
-        isRepairGuy: app.globalData.userInfo2.isRepairGuy,
-        count: count,
-        index: index
+        unionCode: app.globalData.clientInfoP.unionCode,
+        code: app.globalData.code,
+        showCount: showCount,
       },
       method: 'POST',
       header: { "Content-type": "application/x-www-form-urlencoded" },
       success: function (res) {
         try {
+          //将新增的order数目计入
+          var orders_add = res.data.orders
+          console.log('add', res)
+          showCount += orders_add.length
+          //将orders_add 加入 orders_
+          for(var i in orders_add){
+            orders_.push(orders_add[i])
+          }
+          var ordersAdd = orders_add.filter(function (order) {
+            if (filterItemsMode == 0) {
+              return order
+            }
+            else return order.orderStatus == filterItems[filterItemsMode].status
+          });
+          //将orderAdd加入orders
+          for (var j in ordersAdd){
+            orders.push(ordersAdd[j])
+          }
+          that.setData({
+            orders_:orders_,
+            orders:orders,
+            showCount: showCount
+          })           
+
+          /*
           var orders_add_ = res.data.map(function (order) {
             if (order.isCheck) {
               order.status = '已验收'
@@ -174,6 +159,7 @@ Page({
             orders: orders_,
             index: index
           })
+          */
         } catch (err) {
           console.log(err)
         }
